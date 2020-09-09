@@ -111,7 +111,8 @@ class _HomeState extends State<Home> {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () => {
-                  Provider.of<TodoController>(context, listen: false).addTodo(TodoModel(todo: textval, isDone: false)),
+                  Provider.of<TodoController>(context, listen: false)
+                      .addTodo(TodoModel(todo: todoTextController.text.toString(), isDone: false)),
                   Navigator.pop(context),
                 },
               )
