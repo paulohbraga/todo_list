@@ -10,6 +10,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+// ============================ todo list builder ============================
+
+  TextEditingController todoTextController = new TextEditingController();
+
+  @override
+  void dispose() {
+    todoTextController.dispose();
+    super.dispose();
+  }
+
   _buildTodoList(TodoController todoController) {
     return ListView.builder(
         itemCount: todoController.todos.length,
@@ -18,11 +28,15 @@ class _HomeState extends State<Home> {
         });
   }
 
+// ============================ todo card/listtile widget ============================
+
   _todoItem(TodoModel todoModel, TodoController todocontroller) {
     return Card(
       elevation: 2,
       child: ListTile(
-        onLongPress: () {},
+        onLongPress: () {
+          _confirmDelete(todocontroller, todoModel);
+        },
         onTap: () {
           print("clicou");
           todocontroller.checkTodo(todoModel);
@@ -39,11 +53,49 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+// ============================ show dialog to confirm todo remove ============================
 
-  void _showdialog() {
+  void _confirmDelete(TodoController todocontroller, TodoModel todoModel) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+            title: Text(
+              "Are you sure?",
+              textAlign: TextAlign.center,
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Cancel", style: TextStyle(color: Colors.black)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  "Delete",
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  todocontroller.deleteTodo(todoModel);
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
+// ============================ show dialog to create new todo ============================
+  void _showdialog(TodoController todocontroller) {
+    final String textval = todoTextController.text;
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          todoTextController.clear();
+
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: <Widget>[
@@ -58,7 +110,10 @@ class _HomeState extends State<Home> {
                   "Save",
                   style: TextStyle(color: Colors.black),
                 ),
-                onPressed: () {},
+                onPressed: () => {
+                  Provider.of<TodoController>(context, listen: false).addTodo(TodoModel(todo: textval, isDone: false)),
+                  Navigator.pop(context),
+                },
               )
             ],
             content: SingleChildScrollView(
@@ -68,7 +123,7 @@ class _HomeState extends State<Home> {
                 height: 100,
                 width: 300,
                 child: TextField(
-                  //onChanged: (value) => ,
+                  controller: todoTextController,
                   maxLength: 50,
                   textAlignVertical: TextAlignVertical.top,
                   maxLines: null,
@@ -90,6 +145,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    TodoController todocontroller = new TodoController();
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
@@ -101,10 +157,8 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         elevation: 20,
         onPressed: () {
-          _showdialog();
+          _showdialog(todocontroller);
         },
-        // Add your ondiaPressed code here!
-
         child: Icon(Icons.add),
         backgroundColor: Colors.orange,
       ),
