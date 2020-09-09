@@ -22,9 +22,7 @@ class _HomeState extends State<Home> {
     return Card(
       elevation: 2,
       child: ListTile(
-        onLongPress: () {
-          todocontroller.deleteTodo(todoModel);
-        },
+        onLongPress: () {},
         onTap: () {
           print("clicou");
           todocontroller.checkTodo(todoModel);
@@ -51,7 +49,9 @@ class _HomeState extends State<Home> {
             actions: <Widget>[
               FlatButton(
                 child: Text("Cancel", style: TextStyle(color: Colors.black)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
               FlatButton(
                 child: Text(
@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[50],
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text("To Do List"),
       ),
