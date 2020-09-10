@@ -21,6 +21,14 @@ class _HomeState extends State<Home> {
   }
 
   _buildTodoList(TodoController todoController) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+
     return ListView.builder(
         itemCount: todoController.todos.length,
         itemBuilder: (context, index) {
@@ -170,9 +178,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     TodoController todocontroller = new TodoController();
     return Scaffold(
-      backgroundColor: Colors.teal[100],
+      backgroundColor: Colors.orange[100],
       appBar: AppBar(
-        title: Text("To Do List"),
+        title: Text("ToDo It"),
       ),
       body: Consumer<TodoController>(builder: (context, todoController, widget) {
         return _buildTodoList(todoController);
@@ -182,7 +190,7 @@ class _HomeState extends State<Home> {
         onPressed: () {
           _showdialog(todocontroller);
         },
-        child: Icon(Icons.note_add),
+        child: Icon(Icons.add_box),
         backgroundColor: Colors.orange,
       ),
     );
