@@ -38,7 +38,6 @@ class _HomeState extends State<Home> {
           _confirmDelete(todocontroller, todoModel);
         },
         onTap: () {
-          print("clicou");
           todocontroller.checkTodo(todoModel);
         },
         title: Text(todoModel.todo),
@@ -137,7 +136,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             title: Text(
-              "New todo item",
+              "New to do item",
               textAlign: TextAlign.center,
             ),
           );
