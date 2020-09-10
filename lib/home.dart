@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
 
   _todoItem(TodoModel todoModel, TodoController todocontroller) {
     return Card(
-      elevation: 2,
+      elevation: 5,
       child: ListTile(
         onLongPress: () {
           _confirmDelete(todocontroller, todoModel);
@@ -48,10 +48,27 @@ class _HomeState extends State<Home> {
         onTap: () {
           todocontroller.checkTodo(todoModel);
         },
-        title: Text(
-          todoModel.todo,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-        ),
+        // leading: Container(
+        //     width: 10,
+        //     child: Icon(
+        //       Icons.note,
+        //       size: 20,
+        //       color: Colors.blue,
+        //     )),
+        title: todoModel.isDone
+            ? Text(
+                todoModel.todo,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Raleway',
+                    decoration: TextDecoration.lineThrough,
+                    color: Colors.grey),
+              )
+            : Text(
+                todoModel.todo,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, fontFamily: 'Raleway'),
+              ),
         trailing: Container(
           width: 100,
           child: Row(
@@ -93,11 +110,12 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             title: Text(
               "Are you sure?",
+              style: TextStyle(color: Colors.black, fontFamily: 'Raleway'),
               textAlign: TextAlign.center,
             ),
             actions: <Widget>[
               FlatButton(
-                child: Text("Cancel", style: TextStyle(color: Colors.black)),
+                child: Text("Cancel", style: TextStyle(color: Colors.red, fontFamily: 'Raleway')),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -105,7 +123,7 @@ class _HomeState extends State<Home> {
               FlatButton(
                 child: Text(
                   "Delete",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.green[900], fontFamily: 'Raleway'),
                 ),
                 onPressed: () {
                   todocontroller.deleteTodo(todoModel);
@@ -119,8 +137,6 @@ class _HomeState extends State<Home> {
 
 // ============================ show dialog to create new todo ============================
   void _showdialog(TodoController todocontroller) {
-    final String textval = todoTextController.text;
-
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -130,7 +146,7 @@ class _HomeState extends State<Home> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: <Widget>[
               FlatButton(
-                child: Text("Cancel", style: TextStyle(color: Colors.black)),
+                child: Text("Cancel", style: TextStyle(color: Colors.red, fontFamily: 'Raleway')),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -138,7 +154,7 @@ class _HomeState extends State<Home> {
               FlatButton(
                 child: Text(
                   "Save",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.green[900], fontFamily: 'Raleway'),
                 ),
                 onPressed: () => {
                   Provider.of<TodoController>(context, listen: false)
@@ -156,13 +172,10 @@ class _HomeState extends State<Home> {
                 child: TextField(
                   controller: todoTextController,
                   maxLength: 100,
-                  textAlignVertical: TextAlignVertical.top,
+                  textAlignVertical: TextAlignVertical.bottom,
                   maxLines: null,
                   minLines: null,
                   expands: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
                 ),
               ),
             ),
@@ -178,9 +191,21 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     TodoController todocontroller = new TodoController();
     return Scaffold(
-      backgroundColor: Colors.orange[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("ToDo It"),
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Text(
+          "To Do It",
+          style: TextStyle(fontFamily: 'Raleway', fontWeight: FontWeight.bold),
+        ),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.orange[300], Colors.orange[400]]))),
       ),
       body: Consumer<TodoController>(builder: (context, todoController, widget) {
         return _buildTodoList(todoController);
@@ -190,7 +215,7 @@ class _HomeState extends State<Home> {
         onPressed: () {
           _showdialog(todocontroller);
         },
-        child: Icon(Icons.add_box),
+        child: Icon(Icons.create),
         backgroundColor: Colors.orange,
       ),
     );

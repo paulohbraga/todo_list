@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'ToDo It',
         theme: ThemeData(
           primarySwatch: Colors.orange,
+          fontFamily: 'Raleway',
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: MyHomePage(title: 'ToDo It'),
@@ -44,7 +45,7 @@ Widget _introScreen() {
   return Stack(
     children: <Widget>[
       SplashScreen(
-        seconds: 3,
+        seconds: 5,
         gradientBackground: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -58,10 +59,11 @@ Widget _introScreen() {
         children: <Widget>[
           Center(child: Container(alignment: Alignment(0.0, 0.0), width: 200, child: Image.asset('assets/logo.png'))),
           Padding(
-            padding: const EdgeInsets.all(150.0),
+            padding: const EdgeInsets.all(50.0),
             child: Text(
-              "ToDO It",
-              style: TextStyle(color: Colors.black, fontSize: 15, decoration: TextDecoration.none),
+              "TODO IT",
+              style:
+                  TextStyle(color: Colors.black, fontSize: 25, decoration: TextDecoration.none, fontFamily: 'Raleway'),
             ),
           ),
         ],
