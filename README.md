@@ -12,7 +12,7 @@ App to create a list of to-dos, mark as done, create, delete.
 - SplashScreen
 
 
-# Capturas
+# Screenshots
 
 <p align="center">
 <img alt="1" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/1.gif" width="214"/> 
