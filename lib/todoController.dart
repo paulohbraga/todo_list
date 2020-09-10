@@ -47,7 +47,6 @@ class TodoController extends ChangeNotifier {
     if (todoModel.todo.isNotEmpty) {
       todos.add(todoModel);
       prefs.setString("todo", json.encode(todos));
-      print(json.decode(prefs.getString("todo")));
       notifyListeners();
     }
   }

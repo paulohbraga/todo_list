@@ -40,15 +40,38 @@ class _HomeState extends State<Home> {
         onTap: () {
           todocontroller.checkTodo(todoModel);
         },
-        title: Text(todoModel.todo),
-        trailing: todoModel.isDone
-            ? Icon(
-                Icons.check_box,
-                color: Colors.green,
-              )
-            : Icon(
-                Icons.check_box_outline_blank,
+        title: Text(
+          todoModel.todo,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+        ),
+        trailing: Container(
+          width: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  onPressed: () {
+                    _confirmDelete(todocontroller, todoModel);
+                  },
+                ),
               ),
+              todoModel.isDone
+                  ? Icon(
+                      Icons.check_box,
+                      color: Colors.green,
+                    )
+                  : Icon(
+                      Icons.check_box_outline_blank,
+                    ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -124,7 +147,7 @@ class _HomeState extends State<Home> {
                 width: 300,
                 child: TextField(
                   controller: todoTextController,
-                  maxLength: 50,
+                  maxLength: 100,
                   textAlignVertical: TextAlignVertical.top,
                   maxLines: null,
                   minLines: null,
@@ -147,7 +170,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     TodoController todocontroller = new TodoController();
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      backgroundColor: Colors.teal[100],
       appBar: AppBar(
         title: Text("To Do List"),
       ),
@@ -159,7 +182,7 @@ class _HomeState extends State<Home> {
         onPressed: () {
           _showdialog(todocontroller);
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.note_add),
         backgroundColor: Colors.orange,
       ),
     );
