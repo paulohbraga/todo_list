@@ -17,10 +17,10 @@ App to create a list of to-dos, mark as done, create, delete.
 <p align="center">
 <img alt="1" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/1.gif" width="214"/> 
 <img alt="2" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/2.gif" width="214"/> 
-<img alt="3" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/2\3.gif" width="214"/>
+<img alt="3" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/3.gif" width="214"/>
 </p>
 
 <p align="center">
-<img alt="4" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/2.gif" width="214"/> 
-<img alt="5" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/2.gif" width="214"/> 
+<img alt="4" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/4.gif" width="214"/> 
+<img alt="5" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/5.gif" width="214"/> 
 </p>
