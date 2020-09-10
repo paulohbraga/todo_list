@@ -1,18 +1,18 @@
-# Todo it - Todolist app
+## Todo it - Todolist app
 
 App to create a list of to-dos, mark as done, create, delete.
 
-# Language: Dart
-# Framework: Flutter
+## Language: Dart
+## Framework: Flutter
 
-# Libraries/Packages
+## Libraries/Packages
 
 - Provider
 - SharedPreferences
 - SplashScreen
 
 
-# Screenshots
+## Screenshots
 
 <p align="center">
 <img alt="1" src="https://github.com/paulohbraga/todo_list/blob/master/assets/gifs/1.gif" width="214"/> 
